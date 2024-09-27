@@ -12,20 +12,20 @@
   <script src="./js/script.js" defer></script>
 </head>
 <body>
-  <header>
+  <header class="header">
     <h1 class="visually-hidden">Tip Calculator</h1>
-    <img src="./images/logo.svg" alt="">
+    <img class="logo" src="./images/logo.svg" alt="Splitter logo">
   </header>
   <main>
     <form class="calculator">
       <section class="data-input">
         <fieldset class="control">
-          <label for="bill-total">Bill</label>
-          <input type="text" id="bill-total" placeholder="0">
+          <label class="label" for="bill-total">Bill</label>
+          <input class="text-input" type="text" id="bill-total" placeholder="0">
         </fieldset>
-        <fieldset>
+        <fieldset class="control">
           <legend>Select Tip %</legend>
-          <label for="">
+          <label class="label" for="">
             <span class="label-text">5%</span>
             <input type="radio">
           </label>
@@ -55,8 +55,8 @@
 
         </fieldset>
         <fieldset class="control">
-          <label for="">Number of People</label>
-          <input type="text" placeholder="0">
+          <label class="label" for="">Number of People</label>
+          <input class="text-input" type="text" placeholder="0">
         </fieldset>
       </section>
       <section class="data-output">
