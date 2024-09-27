@@ -1,0 +1,162 @@
+/*
+Author: Matt Pahuta
+https://www.mattpahuta.com
+Date: October 2024
+*/
+:root {
+/* Fonts */
+--ff-primary: "Space Mono", monospace;
+/* Font sizing */
+--fs-300: 0.8125rem;
+--fs-400: 1rem;
+--fs-450: 1.25rem;
+--fs-500: 1.5rem;
+--fs-600: 2rem;
+
+/* Colors */
+--white: hsl(0, 0%, 100%);
+--gray-cyan: hsl(186, 14%, 43%);
+--xtra-light-gray-cyan: hsl(189, 41%, 97%);
+--light-gray-cyan: hsl(185, 41%, 84%);
+--dark-gray-cyan: hsl(184, 14%, 56%);
+--bright-cyan: hsl(172, 67%, 45%);
+--dark-cyan: hsl(183, 100%, 15%);
+/* Spacing */
+
+/* Border radius */
+--br-50: 0.3125rem;
+--br-100: 0.938rem;
+--br-150: 1rem;
+--br-200: 1.5rem;
+
+}
+
+/* Reset by Andy Bell */
+/* https://piccalil.li/blog/a-more-modern-css-reset/ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+body, h1, h2, h3, h4, p,
+figure, blockquote, dl, dd {
+  margin-block-end: 0;
+}
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4,
+button, input, label {
+  line-height: 1.1;
+}
+
+h1, h2,
+h3, h4 {
+  text-wrap: balance;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input, button,
+textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* Utility classes */
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+/* Base Styles */
+body {
+  font-family: var(--ff-primary);
+  background: var(--light-gray-cyan);
+}
+
+.btn {
+  border: none;
+  background-color: transparent;
+  padding: 0.25em 0.75em;
+  min-width: 10ch;
+  min-height: 44px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--br-50);
+}
+
+ @media screen and (-ms-high-contrast: active) {
+  .btn {
+    border: 2px solid currentcolor;
+  }
+}
+
+.reset-btn {
+  background: var(--bright-cyan);
+  color: var(--dark-cyan);
+  font-size: var(--fs-450);
+  font-weight: 700;
+  text-transform: uppercase;
+
+}
+
+
+.calculator {
+  max-width: 57.5rem;
+  padding: 2rem 1.5rem;
+  display: grid;
+  font-weight: 700;
+  background: var(--white);
+  color: var(--gray-cyan);
+}
+
+
+.data-output {
+  background: var(--dark-cyan);
+}
+
+
+
+
