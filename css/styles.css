@@ -188,6 +188,15 @@ body {
   display: block;
 }
 
+/* radio input as buttons */
+.data-input__label {
+  
+}
+
+.data-input__radio {
+  appearance: none;
+}
+
 .text-input {
   border: none;
   width: 100%;
