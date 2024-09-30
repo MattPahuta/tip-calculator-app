@@ -4,35 +4,36 @@ https://www.mattpahuta.com
 Date: October 2024
 */
 :root {
-/* Fonts */
---ff-primary: "Space Mono", monospace;
-/* Font sizing */
---fs-300: 0.8125rem;
---fs-400: 1rem;
---fs-450: 1.25rem;
---fs-500: 1.5rem;
---fs-600: 2rem;
+  /* Fonts */
+  --ff-primary: 'Space Mono', monospace;
+  /* Font sizing */
+  --fs-300: 0.8125rem;
+  --fs-400: 1rem;
+  --fs-450: 1.25rem;
+  --fs-500: 1.5rem;
+  --fs-600: 2rem;
 
-/* Colors */
---white: hsl(0, 0%, 100%);
---gray-cyan: hsl(186, 14%, 43%);
---xtra-light-gray-cyan: hsl(189, 41%, 97%);
---light-gray: hsl(184, 19%, 68%);
---light-gray-cyan: hsl(185, 41%, 84%);
---dark-gray-cyan: hsl(184, 14%, 56%);
---bright-cyan: hsl(172, 67%, 45%);
---dark-cyan: hsl(183, 100%, 15%);
-/* Spacing */
---spacing-100: 1rem;
---spacing-150: 1.5rem;
---spacing-200: 2rem;
+  /* Colors */
+  --white: hsl(0, 0%, 100%);
+  --gray-cyan: hsl(186, 14%, 43%);
+  --gray-cyan-alt: hsl(180, 18%, 40%);
+  --xtra-light-gray-cyan: hsl(189, 41%, 97%);
+  --light-gray: hsl(184, 19%, 68%);
+  --light-gray-cyan: hsl(185, 41%, 84%);
+  --dark-gray-cyan: hsl(184, 14%, 56%);
+  --bright-cyan: hsl(172, 67%, 45%);
+  --dark-cyan: hsl(183, 100%, 15%);
+  /* Spacing */
+  --spacing-25: 0.375rem;
+  --spacing-100: 1rem;
+  --spacing-150: 1.5rem;
+  --spacing-200: 2rem;
 
-/* Border radius */
---br-50: 0.3125rem;
---br-100: 0.938rem;
---br-150: 1rem;
---br-200: 1.5rem;
-
+  /* Border radius */
+  --br-50: 0.3125rem;
+  --br-100: 0.938rem;
+  --br-150: 1rem;
+  --br-200: 1.5rem;
 }
 
 /* Reset by Andy Bell */
@@ -49,8 +50,16 @@ html {
   text-size-adjust: none;
 }
 
-body, h1, h2, h3, h4, p,
-figure, blockquote, dl, dd {
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
   margin-block-end: 0;
 }
 
@@ -64,13 +73,20 @@ body {
   line-height: 1.5;
 }
 
-h1, h2, h3, h4,
-button, input, label {
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
   line-height: 1.1;
 }
 
-h1, h2,
-h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   text-wrap: balance;
 }
 
@@ -85,8 +101,10 @@ picture {
   display: block;
 }
 
-input, button,
-textarea, select {
+input,
+button,
+textarea,
+select {
   font-family: inherit;
   font-size: inherit;
 }
@@ -140,7 +158,7 @@ body {
   border-radius: var(--br-50);
 }
 
- @media screen and (-ms-high-contrast: active) {
+@media screen and (-ms-high-contrast: active) {
   .btn {
     border: 2px solid currentcolor;
   }
@@ -152,26 +170,25 @@ body {
   font-size: var(--fs-450);
   font-weight: 700;
   text-transform: uppercase;
-
 }
 
 .calculator,
-.data-input,
-.data-output {
+.data-input-section,
+.data-output-section {
   display: grid;
   gap: 2rem;
 }
 
 .calculator {
-  max-width: 57.5rem;
+  margin: auto;
   padding: 2rem 1.5rem;
+  max-width: 57.5rem;
   font-weight: 700;
   background: var(--white);
   color: var(--gray-cyan);
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
 }
-
 
 .data-output {
   padding: var(--spacing-200);
@@ -184,18 +201,74 @@ body {
   padding: 0;
 }
 
-.label {
+.form-heading__label {
   display: block;
+  margin-bottom: var(--spacing-25);
+}
+
+.data-input {
+  text-align: right;
+}
+
+/* Tip Input Grid */
+.form-heading__legend {
+  margin-bottom: var(--spacing-100);
+}
+
+.data-input__input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-100);
+}
+
+.tip-choice {
+  width: 100%;
+  min-height: 48px;
+  font-size: var(--fs-500);
+}
+
+.tip-choice__custom {
+  padding-inline: var(--spacing-100);
+  border: none;
+  background: var(--xtra-light-gray-cyan);
+  border-radius: var(--br-50);
+  font-weight: 700;
+}
+
+.tip-choice__custom::placeholder {
+
+  color: var(--dark-cyan);
 }
 
 /* radio input as buttons */
-.data-input__label {
-  
+.tip-btn {
+  /* ToDo: consolidate styles with .btn class */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--br-50);
+  line-height: 1.1;
+  text-align: center;
+
+
+  background: var(--dark-cyan);
+  color: var(--white);
 }
 
+
+/* .data-input__label {
+  font-size: var(--fs-500);
+} */
+
 .data-input__radio {
-  appearance: none;
+
 }
+
+.data-input__text-input {
+
+}
+
 
 .text-input {
   border: none;
@@ -204,7 +277,3 @@ body {
   background: var(--xtra-light-gray-cyan);
   border-radius: var(--br-50);
 }
-
-
-
-

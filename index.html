@@ -1,85 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/styles.css">
-  <title>Frontend Mentor | Tip calculator app</title>
-  <script src="./js/script.js" defer></script>
-</head>
-<body>
-  <header class="header">
-    <h1 class="visually-hidden">Tip Calculator</h1>
-    <img class="logo" src="./images/logo.svg" alt="Splitter logo">
-  </header>
-  <main>
-    <form class="calculator">
-      <section class="data-input">
-        <fieldset class="control">
-          <label class="label" for="bill-total">Bill</label>
-          <input class="text-input" type="text" id="bill-total" placeholder="0">
-        </fieldset>
-        <fieldset class="control">
-          <legend>Select Tip %</legend>
-          <label class="label" for="">
-            <span class="label-text">5%</span>
-            <input class="data-input__radio" type="radio">
-          </label>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Frontend Mentor | Tip calculator app</title>
+    <script src="./js/script.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="visually-hidden">Tip Calculator</h1>
+      <img class="logo" src="./images/logo.svg" alt="Splitter logo" />
+    </header>
+    <main>
+      <form class="calculator">
+        <section class="data-input-section">
+          <fieldset class="control">
+            <label class="form-heading__label" for="bill-total">
+              Bill
+            </label>
+            <input
+              class="data-input text-input"
+              type="text"
+              id="bill-total"
+              placeholder="0" />
+          </fieldset>
+          <!-- Select tip amount -->
+          <!-- Tip input grid -->
+          <fieldset class="control">
+            <legend class="form-heading__legend">Select Tip %</legend>
+            <div class="data-input__input-grid">
+              <div class="tip-input">
+                <input
+                  type="radio"
+                  id="tip-5"
+                  class="data-input__radio visually-hidden" />
+                <label
+                  for="tip-5"
+                  class="data-input__label tip-choice tip-btn"
+                  >5%</label
+                >
+              </div>
+              <div class="tip-input">
+                <input
+                  type="radio"
+                  id="tip-10"
+                  class="data-input__radio visually-hidden" />
+                <label
+                  for="tip-10"
+                  class="data-input__label tip-choice tip-btn"
+                  >10%</label
+                >
+              </div>
+              <div class="tip-input">
+                <input
+                  type="radio"
+                  id="tip-15"
+                  class="data-input__radio visually-hidden" />
+                <label
+                  for="tip-15"
+                  class="data-input__label tip-choice tip-btn"
+                  >15%</label
+                >
+              </div>
+              <div class="tip-input">
+                <input
+                  type="radio"
+                  id="tip-25"
+                  class="data-input__radio visually-hidden" />
+                <label
+                  for="tip-25"
+                  class="data-input__label tip-choice tip-btn"
+                  >25%</label
+                >
+              </div>
+              <div class="tip-input">
+                <input
+                  type="radio"
+                  id="tip-50"
+                  class="data-input__radio visually-hidden" />
+                <label
+                  for="tip-50"
+                  class="data-input__label tip-choice tip-btn"
+                  >50%</label
+                >
+              </div>
+              <div class="tip-input">
+                <label
+                  for="tip-custom"
+                  class="data-input__label visually-hidden"
+                  >Custom</label
+                >
+                <input
+                  type="text"
+                  id="tip-custom"
+                  class="data-input tip-choice tip-choice__custom data-input__text-input"
+                  placeholder="Custom" />
+              </div>
+            </div>
+          </fieldset>
 
-          <label class="data-input__label" for="">
-            <span class="label-text">10%</span>
-            <input class="data-input__radio" type="radio">
-          </label>
+          <fieldset class="control">
+            <label class="form-heading__label" for=""
+              >Number of People</label
+            >
+            <input
+              class="data-input text-input"
+              type="text"
+              placeholder="0" />
+          </fieldset>
+        </section>
+        <section class="data-output-section">
+          <div class="result-container">
+            <p class="result-description">
+              <strong>Tip Amount</strong>
+              <span>/ person</span>
+            </p>
+            <output id="tip-result">$0.00</output>
+          </div>
+          <div class="result-container">
+            <p class="result-description">
+              <strong>Total</strong>
+              <span>/ person</span>
+            </p>
+            <output id="total-result">$0.00</output>
+          </div>
+          <button class="btn reset-btn">Reset</button>
+        </section>
+      </form>
+    </main>
 
-          <label class="data-input__label" for="">
-            <span class="label-text">15%</span>
-            <input class="data-input__radio" type="radio">
-          </label>
-
-          <label class="data-input__label" for="">
-            <span class="label-text">25%</span>
-            <input class="data-input__radio" type="radio">
-          </label>
-      
-          <label class="data-input__label" for="">
-            <span class="label-text">50%</span>
-            <input class="data-input__radio" type="radio">
-          </label>
-
-          <label for="" class="visually-hidden">Custom</label>
-          <input type="text" placeholder="Custom">
-
-        </fieldset>
-        <fieldset class="control">
-          <label class="label" for="">Number of People</label>
-          <input class="text-input" type="text" placeholder="0">
-        </fieldset>
-      </section>
-      <section class="data-output">
-        <div class="result-container">
-          <p class="result-description">
-            <strong>Tip Amount</strong>
-            <span>/ person</span>
-          </p>
-          <output id="tip-result">$0.00</output>
-        </div>
-        <div class="result-container">
-          <p class="result-description">
-            <strong>Total</strong>
-            <span>/ person</span>
-          </p>
-          <output id="total-result">$0.00</output>
-        </div>
-        <button class="btn reset-btn">Reset</button>
-      </section>
-    </form>
-  </main>
-  
-  <!-- 10%
+    <!-- 10%
   15%
   25%
   50%
@@ -94,6 +160,5 @@
   / person
 
   Reset -->
-  
-</body>
+  </body>
 </html>
