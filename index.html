@@ -34,6 +34,7 @@
             <label class="form-heading__label" for="bill-total">
               Bill
             </label>
+            <span class="error"></span>
             <input
               class="data-input text-input"
               type="text"
@@ -52,7 +53,7 @@
                   class="data-input__radio visually-hidden" />
                 <label
                   for="tip-5"
-                  class="data-input__label tip-choice tip-btn"
+                  class="data-input__label tip-btn"
                   >5%</label
                 >
               </div>
@@ -63,7 +64,7 @@
                   class="data-input__radio visually-hidden" />
                 <label
                   for="tip-10"
-                  class="data-input__label tip-choice tip-btn"
+                  class="data-input__label tip-btn"
                   >10%</label
                 >
               </div>
@@ -74,7 +75,7 @@
                   class="data-input__radio visually-hidden" />
                 <label
                   for="tip-15"
-                  class="data-input__label tip-choice tip-btn"
+                  class="data-input__label tip-btn"
                   >15%</label
                 >
               </div>
@@ -85,7 +86,7 @@
                   class="data-input__radio visually-hidden" />
                 <label
                   for="tip-25"
-                  class="data-input__label tip-choice tip-btn"
+                  class="data-input__label tip-btn"
                   >25%</label
                 >
               </div>
@@ -96,7 +97,7 @@
                   class="data-input__radio visually-hidden" />
                 <label
                   for="tip-50"
-                  class="data-input__label tip-choice tip-btn"
+                  class="data-input__label tip-btn"
                   >50%</label
                 >
               </div>
@@ -119,26 +120,28 @@
             <label class="form-heading__label" for=""
               >Number of People</label
             >
+            <span class="error"></span>
             <input
               class="data-input text-input"
               type="text"
               placeholder="0" />
           </fieldset>
         </section>
+        <!-- output section -->
         <section class="data-output-section">
           <div class="result-container">
             <p class="result-description">
               <strong>Tip Amount</strong>
               <span>/ person</span>
             </p>
-            <output id="tip-result">$0.00</output>
+            <output class="output" id="tip-result">$0.00</output>
           </div>
           <div class="result-container">
             <p class="result-description">
               <strong>Total</strong>
               <span>/ person</span>
             </p>
-            <output id="total-result">$0.00</output>
+            <output class="output" id="total-result">$0.00</output>
           </div>
           <button class="btn reset-btn">Reset</button>
         </section>
