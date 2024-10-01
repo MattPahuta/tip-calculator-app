@@ -277,6 +277,13 @@ body {
 
 }
 
+/* Style the radio inputs/labels if a selection is checked */
+input[type="radio"]:checked+label {
+  background: var(--strong-cyan);
+  color: var(--very-dark-cyan);
+}
+
+
 /* Results Section */
 .data-output-section {
   padding: var(--spacing-200) var(--spacing-150);
