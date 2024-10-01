@@ -36,10 +36,11 @@
             </label>
             <span class="error"></span>
             <input
-            type="text"
-            name="total"
-            id="bill-total"
+            type="number"
+            name="bill"
+            id="bill"
             class="data-input text-input"
+            required
             placeholder="0" />
           </fieldset>
           <!-- Select tip amount -->
@@ -51,6 +52,7 @@
                 <input
                   type="radio"
                   name="tip-percentage"
+                  value="5"
                   id="tip-5"
                   class="data-input__radio visually-hidden" />
                 <label
@@ -63,6 +65,7 @@
                 <input
                   type="radio"
                   name="tip-percentage"
+                  value="10"
                   id="tip-10"
                   class="data-input__radio visually-hidden" />
                 <label
@@ -75,6 +78,7 @@
                 <input
                   type="radio"
                   name="tip-percentage"
+                  value="15"
                   id="tip-15"
                   class="data-input__radio visually-hidden" />
                 <label
@@ -87,6 +91,7 @@
                 <input
                   type="radio"
                   name="tip-percentage"
+                  value="25"
                   id="tip-25"
                   class="data-input__radio visually-hidden" />
                 <label
@@ -99,6 +104,7 @@
                 <input
                   type="radio"
                   name="tip-percentage"
+                  value="50"
                   id="tip-50"
                   class="data-input__radio visually-hidden" />
                 <label
@@ -129,10 +135,10 @@
             >
             <span class="error"></span>
             <input
+              type="number"
+              name="split-total"
               class="data-input text-input"
               id="split-total"
-              name="split-total"
-              type="text"
               placeholder="0" />
           </fieldset>
         </section>

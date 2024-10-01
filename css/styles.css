@@ -283,6 +283,18 @@ input[type="radio"]:checked+label {
   color: var(--very-dark-cyan);
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  appearance: textfield;
+}
+
 
 /* Results Section */
 .data-output-section {

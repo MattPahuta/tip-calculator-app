@@ -2,19 +2,25 @@ const form = document.getElementById('form');
 // const inputs = document.getElementById("form").elements;
 
 // Form Inputs
-const billTotalInput = form.elements['total'];
+// form.elements gets from elements by name attribute
+const billInput = form.elements['bill'];
 const percentageInputs = Array.from(form.elements['tip-percentage']);
 const customPercentageInput = form.elements['custom-percentage'];
 const splitTotalInput = form.elements['split-total'];
 // Calculator Outputs
-const tipResult = document.getElementById('tip-result');
-const totalResult = document.getElementById('total-result');
-// Reset Button
+const tipResultDisplay = document.getElementById('tip-result');
+const totalResultDisplay = document.getElementById('total-result');
+// Reset button
 const resetBtn = document.getElementById('reset-btn');
 
-// console.log('Bill Total: ', billTotalInput.value)
-// console.log('Custom Tip: ', customPercentageInput.value)
-// console.log('Split Total: ', splitTotalInput.value)
+// *** High level logic
+/* 
+  - if billTotalInput && splitTotalInput && tipPercentage
+    - run calculation
+    - render results 
+
+*/
+
 
 
 // Clear error or success states for a field
@@ -33,17 +39,53 @@ function dataIsValid() {
   // else return false
 }
 
-// Calculate tip
-function calculateTip(total, percentage, splitNum) {
-  // total = total bill
-  // percentage = selected tip percentage
-  // splitNum = number of ways to split the bill
-
-  const tipAmount = total * percentage
-
-  // return tip amount per person
-  // return total amount per person
+// Get the selected tip percentage value - preset btn or custom
+function getSelectedTipPercentage() {
+  const selectedTipInputBtn = document.querySelector('input[name="tip-percentage"]:checked');
+  const selectedTipValue = parseFloat(selectedTipInputBtn.value);
+  return selectedTipValue;
 }
+
+
+function calculateTip() {
+  const billAmount = parseFloat(billInput.value);
+  const tip = getSelectedTipPercentage()
+
+
+  if (isNaN(billAmount) || billAmount <= 0) {
+    // set tip amount and total bill element to render $0.00
+    return;
+  }
+
+  const tipAmount = (billAmount * tip) / 100;
+  const totalAmount = billAmount + tipAmount;
+
+  // render results
+  tipResultDisplay.textContent = `$${tipAmount.toFixed(2)}`;
+  totalResultDisplay.textContent = `$${totalAmount.toFixed(2)}`;
+}
+
+
+billInput.addEventListener('input', calculateTip);
+percentageInputs.forEach(radio => {
+  radio.addEventListener('change', calculateTip)
+});
+
+// Calculate tip amount
+function calculateTipAmount(bill, percentage, splitNum){
+  const tip = bill * percentage / 100;
+  return (tip / splitNum).toFixed(2);
+}
+
+// Calculate bill total
+function calculateTotalAmount(bill, tipAmountPerPerson, splitNum) {
+  // total per person without tip
+  const total = bill / splitNum;
+  // tipAmountPerPerson = calculateTipAmount()
+  const totalPerPerson = total + Number(tipAmountPerPerson);
+  return totalPerPerson.toFixed(2)
+}
+
 
 // Reset radio input states if custom tip input is focused 
 function resetRadioInputs() {
@@ -52,21 +94,6 @@ function resetRadioInputs() {
   // reset selected tip value
 }
 
-// Run on form input change events
-function handleChange(e) {
-  // e.preventDefault();
-  // *** Required Logic *** //
-  /*
-    - get bill total value, 
-  */
-  // remove error message from form
-
-  console.log('Bill Total: ', billTotalInput.value)
-
-
-  // console.log('Bill total: ', billTotal.value)
-  // console.log('Split total: ', splitTotal.value)
-} 
 
 // Reset form fields and calculations
 function resetForm() {
