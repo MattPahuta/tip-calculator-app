@@ -26,6 +26,7 @@ Users should be able to:
 - View the optimal layout for the app depending on their device's screen size
 - See hover states for all interactive elements on the page
 - Calculate the correct tip and total cost of the bill per person
+- See error states when required data is missing
 
 ### Screenshot
 
@@ -46,9 +47,12 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
+- Vanilla JavaScript
 
 
 ### What I learned
+
+The design calls for the error states to be inline with the input labels (Bill, Number of People), but on smaller screens there just isn't enough space to accomplish this without overlapping the content. 
 
 Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 

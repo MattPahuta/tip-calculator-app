@@ -31,10 +31,10 @@
       <form class="calculator" id="form">
         <section class="data-input-section">
           <fieldset class="control">
-            <label class="form-heading__label" for="bill-total">
+            <label class="form-heading__label" for="billAmount">
               Bill
             </label>
-            <span class="error" id="bill-error"></span>
+            <span class="error" id="billError"></span>
             <input
             type="number"
             name="billAmount"
@@ -53,10 +53,10 @@
                   type="radio"
                   name="tip-percentage"
                   value="5"
-                  id="tip-5"
+                  id="tip5"
                   class="data-input__radio visually-hidden" />
                 <label
-                  for="tip-5"
+                  for="tip5"
                   class="data-input__label tip-btn"
                   >5%</label
                 >
@@ -66,10 +66,10 @@
                   type="radio"
                   name="tip-percentage"
                   value="10"
-                  id="tip-10"
+                  id="tip10"
                   class="data-input__radio visually-hidden" />
                 <label
-                  for="tip-10"
+                  for="tip10"
                   class="data-input__label tip-btn"
                   >10%</label
                 >
@@ -79,10 +79,10 @@
                   type="radio"
                   name="tip-percentage"
                   value="15"
-                  id="tip-15"
+                  id="tip15"
                   class="data-input__radio visually-hidden" />
                 <label
-                  for="tip-15"
+                  for="tip15"
                   class="data-input__label tip-btn"
                   >15%</label
                 >
@@ -92,10 +92,10 @@
                   type="radio"
                   name="tip-percentage"
                   value="25"
-                  id="tip-25"
+                  id="tip25"
                   class="data-input__radio visually-hidden" />
                 <label
-                  for="tip-25"
+                  for="tip25"
                   class="data-input__label tip-btn"
                   >25%</label
                 >
@@ -105,24 +105,24 @@
                   type="radio"
                   name="tip-percentage"
                   value="50"
-                  id="tip-50"
+                  id="tip50"
                   class="data-input__radio visually-hidden" />
                 <label
-                  for="tip-50"
+                  for="tip50"
                   class="data-input__label tip-btn"
                   >50%</label
                 >
               </div>
               <div class="tip-input">
                 <label
-                  for="tip-custom"
+                  for="tipCustom"
                   class="data-input__label visually-hidden"
                   >Custom</label
                 >
                 <input
-                  type="text"
+                  type="number"
                   name="custom-percentage"
-                  id="tip-custom"
+                  id="tipCustom"
                   class="data-input tip-choice tip-choice__custom data-input__text-input"
                   placeholder="Custom" />
               </div>
@@ -130,17 +130,16 @@
           </fieldset>
 
           <fieldset class="control">
-            <label class="form-heading__label" for=""
+            <label class="form-heading__label" for="numPeople"
               >Number of People</label
             >
-            <span class="error" id="people-error"></span>
+            <span class="error" id="peopleError"></span>
             <input
               type="number"
               name="numPeople"
               class="data-input"
               id="numPeople"
               min="1"
-              value="1"
               required
               placeholder="0" />
           </fieldset>
@@ -152,16 +151,16 @@
               <strong>Tip Amount</strong>
               <span>/ person</span>
             </p>
-            <output class="output" id="tip-result">$0.00</output>
+            <output class="output" id="tipResult">$0.00</output>
           </div>
           <div class="result-container">
             <p class="result-description">
               <strong>Total</strong>
               <span>/ person</span>
             </p>
-            <output class="output" id="total-result">$0.00</output>
+            <output class="output" id="totalResult">$0.00</output>
           </div>
-          <button type="reset" id="reset-btn" class="btn reset-btn">Reset</button>
+          <button type="reset" id="resetBtn" class="btn reset-btn">Reset</button>
         </section>
       </form>
     </main>

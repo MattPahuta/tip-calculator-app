@@ -1,119 +1,123 @@
-const form = document.getElementById('form');
-// const inputs = document.getElementById("form").elements;
-
-// Form Inputs
-// form.elements gets from elements by name attribute
-const billInput = form.elements['bill'];
-const percentageInputs = Array.from(form.elements['tip-percentage']);
-const customPercentageInput = form.elements['custom-percentage'];
-const splitTotalInput = form.elements['split-total'];
-// Calculator Outputs
-const tipResultDisplay = document.getElementById('tip-result');
-const totalResultDisplay = document.getElementById('total-result');
-// Reset button
-const resetBtn = document.getElementById('reset-btn');
-// Ready to calculate state
-let isReadyToCalculate = false;
-
-// *** High level logic
-/* 
-  - wait for user inputs to run calculation
-    - once bill value, tip selection, and splitNum is present
-      - set isReadyToCalculate to true;
-  - if billTotalInput && splitTotalInput && tipPercentage 
-    - run calculation
-    - render results 
-
-*/
+// const billAmountInput = document.getElementById('billAmount');
+// const numPeopleInput = document.getElementById('numPeople');
+// const tipPercentageBtns = document.querySelectorAll('input[name="tip-percentage"]');
+// const customPercentageInput = document.getElementById('tipCustom');
+// const resetBtn = document.getElementById('resetBtn');
 
 
-
-// Clear error or success states for a field
-function clearError() {
-
+// Validate bill amount input
+function isValidBillAmount(billAmount) {
+  // billAmount is a number and greater than 0, true or false
+  return !isNaN(billAmount) && billAmount > 0;
 }
 
-// Render error message for a field
-function renderError() {
-
+// Validate tip percentage is selected
+function isValidTipPercentageSelected() {
+  // a tip percentage radio button is selected, true or false
+  return document.querySelector('input[name="tip-percentage"]:checked') !== null;
 }
 
-// Check for valid data
-function dataIsValid() {
-  // if value passes validation, return true
-  // else return false
+// Validate number of people input
+function isValidNumberOfPeople(numPeople) {
+  // numPeople is a number and greater than 0, true or false
+  return !isNaN(numPeople) && numPeople > 0;
 }
 
-// Get the selected tip percentage value - preset btn or custom
-function getSelectedTipPercentage() {
-  const selectedTipInputBtn = document.querySelector('input[name="tip-percentage"]:checked');
-  const selectedTipValue = parseFloat(selectedTipInputBtn.value);
-  return selectedTipValue;
+// Calculate tip amount per person
+function calculateTipAmount(billAmount, tipPercentage, numPeople) {
+  return (billAmount * tipPercentage) / 100 / numPeople;
 }
 
+// Calculate total amount per person (billAmount + tip)
+function calculateTotalAmount(billAmount, tipAmount, numPeople) {
+  return (billAmount / numPeople) + tipAmount;
+}
 
-function calculateTip() {
-
-
-
-  const billAmount = parseFloat(billInput.value);
-  const tip = getSelectedTipPercentage()
-
-  if ()
-
-  if (isNaN(billAmount) || billAmount <= 0) {
-    // set tip amount and total bill element to render $0.00
-    tipResultDisplay.textContent = '$0.00';
-    totalResultDisplay.textContent = '$0.00';
-    return;
-  }
-
-  const tipAmount = (billAmount * tip) / 100;
-  const totalAmount = billAmount + tipAmount;
-
-  // render results
+// Render calculated results to UI
+function renderResults(tipAmount, totalAmount) {
+  const tipResultDisplay = document.getElementById('tipResult');
+  const totalResultDisplay = document.getElementById('totalResult');
   tipResultDisplay.textContent = `$${tipAmount.toFixed(2)}`;
   totalResultDisplay.textContent = `$${totalAmount.toFixed(2)}`;
 }
 
-
-billInput.addEventListener('input', calculateTip);
-percentageInputs.forEach(radio => {
-  radio.addEventListener('change', calculateTip)
-});
-
-// Calculate tip amount
-function calculateTipAmount(bill, percentage, splitNum){
-  const tip = bill * percentage / 100;
-  return (tip / splitNum).toFixed(2);
+// *** Render error messaging
+function renderError(elementId, message) {
+  document.getElementById(elementId).textContent = message;
+  console.log('populating ', document.getElementById(elementId))
 }
 
-// Calculate bill total
-function calculateTotalAmount(bill, tipAmountPerPerson, splitNum) {
-  // total per person without tip
-  const total = bill / splitNum;
-  // tipAmountPerPerson = calculateTipAmount()
-  const totalPerPerson = total + Number(tipAmountPerPerson);
-  return totalPerPerson.toFixed(2)
-}
-
-
+// Clear tipPercentage radio btns
 // Reset radio input states if custom tip input is focused 
 function resetRadioInputs() {
   // uncheck any chechek input
-  percentageInputs.forEach(el => el.checked = false);
-  // reset selected tip value
+  tipPercentageBtns.forEach(el => el.checked = false);
 }
 
-
-// Reset form fields and calculations
+// Reset form, clear values
 function resetForm() {
-  console.log('Resetting form...')
+  document.getElementById('form').reset();
+  // clear tip amount and total displays - $0.00
+  renderResults(0, 0);
+  // ToDo: reset any visible error messages, loop?
 }
 
-// Custom percentage focus listener
-customPercentageInput.addEventListener('focus', resetRadioInputs);
+// Handle calculation upon input change events
+function handleInputChange() {
+  const billAmountInput = document.getElementById('billAmount');
+  const numPeopleInput = document.getElementById('numPeople');
+  // get the selected tip percentage radio btn
+  // ToDo: streamline this code:
+  const selectedTipInput = document.querySelector('input[name="tip-percentage"]:checked')
+  // get form input values and assign to variables
+  const billAmount = parseFloat(billAmountInput.value);
+  const numPeople = parseInt(numPeopleInput.value);
+  // tip percentage is null or a selected tip percentage
+  const tipPercentage = selectedTipInput ? parseFloat(selectedTipInput.value) : null;
+
+  // ToDo: further separate out the error handling functions
+  // - A general validation function or object?
+  // Validate inputs
+  if (!isValidBillAmount(billAmount)) {
+    renderError('billError', 'Enter amount greater than zero')
+    renderResults(0, 0);
+    return;
+  }
+
+  if (!isValidTipPercentageSelected()) {
+    renderError('tipError', 'Select a tip percentage');
+    renderResults(0, 0);
+    return;
+  }
+
+  if (!isValidNumberOfPeople(numPeople)) {
+    renderError('peopleError', 'Enter valid number of people');
+    renderResults(0, 0);
+    return;
+  }
+
+  // Clear any existing error messages
+  renderError('billError', '');
+  renderError('tipError', '');
+  renderError('peopleError', '');
 
 
-// Reset event listener
-form.addEventListener('reset', resetForm)
+  // Calculate tip and total per person
+  const tipAmount = calculateTipAmount(billAmount, tipPercentage, numPeople);
+  const totalAmount = calculateTotalAmount(billAmount, tipAmount, numPeople);
+
+  // Render results to UI
+  renderResults(tipAmount, totalAmount)
+}
+
+// Event listeners
+// ToDo: update with variables where needed
+// Add 'focus' listener to customTip field, call resetRadios
+document.getElementById('billAmount').addEventListener('input', handleInputChange);
+document.getElementById('numPeople').addEventListener('input', handleInputChange);
+document.querySelectorAll('input[name="tip-percentage"]').forEach(radio => {
+  radio.addEventListener('change', handleInputChange);
+});
+
+// customPercentageInput.addEventListener('focus', resetRadioInputs);
+document.getElementById('resetBtn').addEventListener('click', resetForm);

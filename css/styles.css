@@ -334,3 +334,5 @@ input[type=number] {
   top: 0;
   right: 0;
 }
+
+/* ToDo: make error messages stack by default, align when on the larger orientation*/
