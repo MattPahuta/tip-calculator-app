@@ -34,12 +34,12 @@
             <label class="form-heading__label" for="bill-total">
               Bill
             </label>
-            <span class="error"></span>
+            <span class="error" id="bill-error"></span>
             <input
             type="number"
-            name="bill"
-            id="bill"
-            class="data-input text-input"
+            name="billAmount"
+            id="billAmount"
+            class="data-input"
             required
             placeholder="0" />
           </fieldset>
@@ -133,12 +133,15 @@
             <label class="form-heading__label" for=""
               >Number of People</label
             >
-            <span class="error"></span>
+            <span class="error" id="people-error"></span>
             <input
               type="number"
-              name="split-total"
-              class="data-input text-input"
-              id="split-total"
+              name="numPeople"
+              class="data-input"
+              id="numPeople"
+              min="1"
+              value="1"
+              required
               placeholder="0" />
           </fieldset>
         </section>
