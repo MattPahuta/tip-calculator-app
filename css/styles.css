@@ -327,12 +327,16 @@ input[type=number] {
   font-size: var(--fs-600);
 }
 
+/* larger screens, set to flex or grid */
+.label-container {
+
+}
 
 .error {
-  position: absolute;
+  /* position: absolute; */
   color: var(--alert-red);
-  top: 0;
-  right: 0;
+  /* top: 0;
+  right: 0; */
 }
 
 /* ToDo: make error messages stack by default, align when on the larger orientation*/
