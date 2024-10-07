@@ -52,11 +52,11 @@ Users should be able to:
 
 ### What I learned
 
-The design calls for the error states to be inline with the input labels (Bill, Number of People), but on smaller screens there just isn't enough space to accomplish this without overlapping the content. 
+The design calls for the error states to be inline with the input labels (Bill, Number of People), but on smaller screens there just isn't enough space to accomplish this without overlapping the content. There's no design comp for the errors on mobile, but this seemed like the most reasonable approach to me.
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+In general, I didn't spend a terrible amount of time trying to make a pixel perfect match with this project. As a non-pro Figma user, this design file felt a little more frustrating than usual. Instead, I eyeballed much of the final design and sought to achieve something that looked decent enough on various screens.
 
-To see how you can add code snippets, see below:
+I'm still somewhat baffled by how to achieve a truly accessible form with radio inputs styled in this way. I'm hoping it's not too woefully inadequate in that department but if anyone has any particular skills and experience here I'd welcome the feedback.
 
 ```html
 <h1>Some HTML code I'm proud of</h1>

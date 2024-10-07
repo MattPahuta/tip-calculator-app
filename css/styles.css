@@ -24,10 +24,12 @@ Date: October 2024
   --alert-red: hsl(13, 70%, 61%);
   /* Spacing */
   --spacing-25: 0.375rem;
+  --spacing-50: 0.5rem;
   --spacing-100: 1rem;
   --spacing-150: 1.5rem;
   --spacing-200: 2rem;
   --spacing-300: 3rem;
+  --spacing-550: 5.5rem;
   /* Border radius */
   --br-50: 0.375rem;
   --br-100: 0.938rem;
@@ -132,6 +134,8 @@ textarea:not([rows]) {
 /* Base Styles */
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
   font-family: var(--ff-primary);
   background: var(--light-grayish-cyan);
   color: var(--dark-grayish-cyan);
@@ -146,10 +150,12 @@ body {
 }
 
 .btn {
+  width: 100%;
   border: none;
   background-color: transparent;
   padding: 0.25em 0.75em;
-  min-width: 10ch;
+  text-align: center;
+  line-height: 1.1;
   min-height: 48px;
   cursor: pointer;
   display: inline-flex;
@@ -166,18 +172,19 @@ body {
 }
 
 .reset-btn {
+  min-width: 10ch;
   background: var(--strong-cyan);
   color: var(--very-dark-cyan);
   font-size: var(--fs-450);
   text-transform: uppercase;
+  align-self: end;
 }
 
 /* reset and tip choice btn hover/focus - bg: alt-cyan */
 /* input outlide for focus - strong cyan */
 .tip-btn:hover,
 .tip-btn:focus,
-.reset-btn:hover,
-.reset-btn:focus {
+.reset-btn:hover {
   background: var(--alt-cyan);
 }
 
@@ -190,25 +197,26 @@ body {
 .data-input-section,
 .data-output-section {
   display: grid;
-  gap: 2rem;
+  gap: var(--spacing-200);
 }
 
 .calculator {
   margin: auto;
-  padding: 2rem 1.5rem;
+  padding: var(--spacing-200);
   max-width: 57.5rem;
   font-weight: 700;
   background: var(--white);
   color: var(--gray-cyan);
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
+  border-top-left-radius: var(--spacing-200);
+  border-top-right-radius: var(--spacing-200);
 }
-
 
 /* fieldset reset */
 .control {
   margin: 0;
   padding: 0;
+  display: grid;
+  gap: var(--spacing-50);
   position: relative;
   border: none;
   line-height: 1.1;
@@ -238,9 +246,22 @@ body {
 }
 
 .data-input:focus {
-  /* outline-color: var(--strong-cyan); */
   outline: none;
   box-shadow: 0 0 0 3px var(--strong-cyan);
+}
+
+.bill-input,
+.people-input {
+  background-repeat: no-repeat;
+  background-position: 0.75rem center;
+}
+
+.bill-input {
+  background-image: url('../images/icon-dollar.svg');
+}
+
+.people-input {
+  background-image: url('../images/icon-person.svg');
 }
 
 /* Tip Input Grid */
@@ -254,23 +275,8 @@ body {
   gap: var(--spacing-100);
 }
 
-
-
-
 /* radio input as buttons */
 .tip-btn {
-  /* ToDo: consolidate styles with .btn class */
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--br-50);
-  line-height: 1.1;
-  text-align: center;
-
-  /* tip radio button specific: */
-  width: 100%;
-  min-height: 48px;
   font-size: var(--fs-500);
   background: var(--very-dark-cyan);
   color: var(--white);
@@ -294,7 +300,6 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   appearance: textfield;
 }
-
 
 /* Results Section */
 .data-output-section {
@@ -325,18 +330,40 @@ input[type=number] {
 .output {
   color: var(--strong-cyan);
   font-size: var(--fs-600);
+  font-size: clamp(2rem, 1.6666666666666665rem + 1.4814814814814816vw, 3rem);
 }
 
-/* larger screens, set to flex or grid */
 .label-container {
-
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-50);
 }
 
 .error {
-  /* position: absolute; */
   color: var(--alert-red);
-  /* top: 0;
-  right: 0; */
 }
 
-/* ToDo: make error messages stack by default, align when on the larger orientation*/
+@media screen and (min-width: 42rem) {
+  body {
+    justify-content: center;
+    gap: var(--spacing-550);
+  }
+  .header {
+    padding: 0;
+  }
+  .main {
+    padding-inline: var(--spacing-100);
+  }
+  .calculator {
+    grid-template-columns: 1fr 1fr;
+    border-radius: var(--spacing-200);
+  }
+  .data-input-section {
+    padding: var(--spacing-100);
+    gap: var(--spacing-300);
+  }
+  .data-input__input-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(7rem, 100%), 1fr));
+  }
+}
