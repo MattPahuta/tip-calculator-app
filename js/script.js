@@ -1,19 +1,16 @@
-// const billAmountInput = document.getElementById('billAmount');
-// const numPeopleInput = document.getElementById('numPeople');
-const tipPercentageBtns = document.querySelectorAll('input[name="tip-percentage"]');
+const billAmountInput = document.getElementById('billAmount');
+const tipPercentageBtns = document.querySelectorAll('input[name="tipPercentage"]');
 const customPercentageInput = document.getElementById('tipCustom');
-// const resetBtn = document.getElementById('resetBtn');
-
+const numPeopleInput = document.getElementById('numPeople');
+const resetBtn = document.getElementById('resetBtn');
 
 // Validate bill amount input
 function isValidBillAmount(billAmount) {
-  // billAmount is a number and greater than 0, true or false
   return !isNaN(billAmount) && billAmount > 0;
 }
 
 // Validate number of people input
 function isValidNumberOfPeople(numPeople) {
-  // numPeople is a number and greater than 0, true or false
   return !isNaN(numPeople) && numPeople > 0;
 }
 
@@ -29,23 +26,23 @@ function calculateTotalAmount(billAmount, tipAmount, numPeople) {
 
 // Render calculated results to UI
 function renderResults(tipAmount, totalAmount) {
-  const tipResultDisplay = document.getElementById('tipResult');
-  const totalResultDisplay = document.getElementById('totalResult');
-  tipResultDisplay.textContent = `$${tipAmount.toFixed(2)}`;
-  totalResultDisplay.textContent = `$${totalAmount.toFixed(2)}`;
+  document.getElementById('tipAmount').textContent = `$${tipAmount.toFixed(2)}`;
+  document.getElementById('totalAmount').textContent = `$${totalAmount.toFixed(2)}`;
 }
 
-// *** Render error messaging
+// Render error messaging
 function renderError(elementId, message) {
   document.getElementById(elementId).textContent = message;
-  console.log('populating ', document.getElementById(elementId))
 }
 
-// Clear tipPercentage radio btns
 // Reset radio input states if custom tip input is focused 
 function resetRadioInputs() {
-  // uncheck any chechek input
   tipPercentageBtns.forEach(el => el.checked = false);
+}
+
+function clearErrors() {
+  const errorEls = document.querySelectorAll('.error');
+  errorEls.forEach(el => el.textContent = '');
 }
 
 // Reset form, clear values
@@ -58,36 +55,32 @@ function resetCalculator() {
 
 // Handle calculation upon input change events
 function handleInputChange() {
-  const billAmountInput = document.getElementById('billAmount');
-  const numPeopleInput = document.getElementById('numPeople');
   // get the selected tip percentage radio btn
   // ToDo: streamline this code:
-  const selectedTipInput = document.querySelector('input[name="tip-percentage"]:checked')
+  const selectedTipInput = document.querySelector('input[name="tipPercentage"]:checked')
   // get form input values and assign to variables
   const billAmount = parseFloat(billAmountInput.value);
   const numPeople = parseInt(numPeopleInput.value);
   // tip percentage is null or a selected tip percentage
   const tipPercentage = selectedTipInput ? parseFloat(selectedTipInput.value) : null;
+  // Clear any existing error messages
+  renderError('billError', '');
+  renderError('peopleError', '');
 
   // ToDo: further separate out the error handling functions
   // - A general validation function or object?
   // Validate inputs
   if (!isValidBillAmount(billAmount)) {
-    renderError('billError', 'Enter amount greater than zero')
+    renderError('billError', 'Enter a dollar amount')
     renderResults(0, 0);
     return;
   }
 
   if (!isValidNumberOfPeople(numPeople)) {
-    renderError('peopleError', 'Enter valid number of people');
+    renderError('peopleError', 'Enter at least 1 person');
     renderResults(0, 0);
     return;
   }
-
-  // Clear any existing error messages
-  renderError('billError', '');
-  renderError('peopleError', '');
-
 
   // Calculate tip and total per person
   const tipAmount = calculateTipAmount(billAmount, tipPercentage, numPeople);
@@ -98,13 +91,10 @@ function handleInputChange() {
 }
 
 // Event listeners
-// ToDo: update with variables where needed
-// Add 'focus' listener to customTip field, call resetRadios
-document.getElementById('billAmount').addEventListener('input', handleInputChange);
-document.getElementById('numPeople').addEventListener('input', handleInputChange);
-document.querySelectorAll('input[name="tip-percentage"]').forEach(radio => {
+billAmountInput.addEventListener('input', handleInputChange);
+numPeopleInput.addEventListener('input', handleInputChange);
+tipPercentageBtns.forEach(radio => {
   radio.addEventListener('change', handleInputChange);
 });
-
 customPercentageInput.addEventListener('focus', resetRadioInputs);
-document.getElementById('resetBtn').addEventListener('click', resetCalculator);
+resetBtn.addEventListener('click', resetCalculator);

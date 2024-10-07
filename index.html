@@ -20,7 +20,7 @@
       rel="stylesheet" />
     <link rel="stylesheet" href="./css/styles.css" />
     <title>Frontend Mentor | Tip calculator app</title>
-    <script src="./js/script.js" defer></script>
+    <!-- <script src="./js/script.js" defer></script> -->
   </head>
   <body>
     <header class="header">
@@ -36,7 +36,7 @@
                 Bill
               </label>
               <span class="error" id="billError"
-                >Enter a dollar amount</span
+                ></span
               >
             </div>
             <input
@@ -57,7 +57,7 @@
               <div class="tip-input">
                 <input
                   type="radio"
-                  name="tip-percentage"
+                  name="tipPercentage"
                   value="5"
                   id="tip5"
                   class="data-input__radio visually-hidden" />
@@ -68,7 +68,7 @@
               <div class="tip-input">
                 <input
                   type="radio"
-                  name="tip-percentage"
+                  name="tipPercentage"
                   value="10"
                   id="tip10"
                   class="data-input__radio visually-hidden" />
@@ -79,7 +79,7 @@
               <div class="tip-input">
                 <input
                   type="radio"
-                  name="tip-percentage"
+                  name="tipPercentage"
                   value="15"
                   id="tip15"
                   class="data-input__radio visually-hidden" />
@@ -90,7 +90,7 @@
               <div class="tip-input">
                 <input
                   type="radio"
-                  name="tip-percentage"
+                  name="tipPercentage"
                   value="25"
                   id="tip25"
                   class="data-input__radio visually-hidden" />
@@ -101,7 +101,7 @@
               <div class="tip-input">
                 <input
                   type="radio"
-                  name="tip-percentage"
+                  name="tipPercentage"
                   value="50"
                   id="tip50"
                   class="data-input__radio visually-hidden" />
@@ -131,7 +131,7 @@
                 >Number of People</label
               >
               <span class="error" id="peopleError"
-                >Enter at least 1 person</span
+                ></span
               >
             </div>
             <input
@@ -151,14 +151,14 @@
               <strong>Tip Amount</strong>
               <span>/ person</span>
             </p>
-            <output class="output" id="tipResult">$0.00</output>
+            <output class="output" id="tipAmount">$0.00</output>
           </div>
           <div class="result-container">
             <p class="result-description">
               <strong>Total</strong>
               <span>/ person</span>
             </p>
-            <output class="output" id="totalResult">$0.00</output>
+            <output class="output" id="totalAmount">$0.00</output>
           </div>
           <button type="reset" id="resetBtn" class="btn reset-btn">
             Reset
@@ -166,5 +166,7 @@
         </section>
       </form>
     </main>
+
+    <script src="./js/script.js"></script>
   </body>
 </html>
