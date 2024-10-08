@@ -80,8 +80,7 @@ function handleInputChange() {
   // get tip percentage
   const tipPercentage = getSelectedTipPercentage();
   // Clear any existing error messages
-  renderError('billError', '');
-  renderError('peopleError', '');
+  clearErrors();
 
   // ToDo: further separate out the error handling functions
   // - A general validation function or object?
@@ -95,6 +94,12 @@ function handleInputChange() {
   if (!isValidNumberOfPeople(numPeople)) {
     renderError('peopleError', 'Enter at least 1 person');
     renderResults(0, 0);
+    return;
+  }
+
+  if (tipPercentage === null) {
+    renderError('tipError', 'Enter a tip percentage')
+    renderResults(0,0);
     return;
   }
 

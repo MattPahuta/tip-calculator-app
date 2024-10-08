@@ -74,7 +74,7 @@ const proudOfThisFunc = () => {
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+The error elements (p elements) are currently part of the initial DOM and empty by default. Empty elements like this are generally a bad practice. A future enhancement of this project would include dynamically creating/removing the error elements as needed.
 
 ### Useful resources
 
