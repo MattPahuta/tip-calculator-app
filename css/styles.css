@@ -163,6 +163,7 @@ body {
   justify-content: center;
   font-weight: 700;
   border-radius: var(--br-50);
+  transition: 180ms all ease-in-out;
 }
 
 @media screen and (-ms-high-contrast: active) {
@@ -180,8 +181,6 @@ body {
   align-self: end;
 }
 
-/* reset and tip choice btn hover/focus - bg: alt-cyan */
-/* input outlide for focus - strong cyan */
 .tip-btn:hover,
 .tip-btn:focus,
 .reset-btn:hover {
@@ -276,7 +275,6 @@ body {
   font-size: var(--fs-500);
   background: var(--very-dark-cyan);
   color: var(--white);
-
 }
 
 /* Style the radio inputs/labels if a selection is checked */
@@ -285,6 +283,7 @@ input[type="radio"]:checked+label {
   color: var(--very-dark-cyan);
 }
 
+/* Deal with number input arrows */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -326,7 +325,7 @@ input[type=number] {
 .output {
   color: var(--strong-cyan);
   font-size: var(--fs-600);
-  font-size: clamp(2rem, 1.6666666666666665rem + 1.4814814814814816vw, 3rem);
+  font-size: clamp(2rem, 1.6666rem + 1.48148vw, 3rem);
 }
 
 .label-container,

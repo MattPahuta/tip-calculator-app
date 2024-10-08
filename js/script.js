@@ -4,6 +4,48 @@ const customTipInput = document.getElementById('customTip');
 const numPeopleInput = document.getElementById('numPeople');
 const resetBtn = document.getElementById('resetBtn');
 
+// Error validation rules object
+const validations = {
+  billAmount: {
+    validate: (value) => !isNaN(value) && value > 0,
+    elementId: "billError",
+    errorMessage: "Please enter a valid dollar amount."
+  },
+  numPeople: {
+    validate: (value) => !isNaN(value) && value > 0,
+    elementId: "peopleError",
+    errorMessage: "Please enter at least 1 person."
+  },
+  tipPercentage: {
+    validate: (value) => value !== null,
+    elementId: "tipError",
+    errorMessage: "Please enter a tip percentage."
+  },
+}
+
+// if (!isValidBillAmount(billAmount)) {
+//   renderError('billError', 'Enter a dollar amount')
+//   renderResults(0, 0);
+//   return;
+// }
+
+function validateField(field, value) {
+  const rule = validations[field];
+  if (!rule.validate(value)) {
+    renderError(rule.elementId, rule.errorMessage);
+    return false;
+  }
+  renderError(rule.elementId, '');
+  return true;
+}
+
+// Render error messaging
+function renderError(elementId, message) {
+  // console.log('Setting error for elementID: ', elementId);
+  // console.log('Message: ', message)
+  document.getElementById(elementId).textContent = message;
+}
+
 // Validate bill amount input
 function isValidBillAmount(billAmount) {
   return !isNaN(billAmount) && billAmount > 0;
@@ -19,8 +61,11 @@ function getSelectedTipPercentage() {
   const selectedTipRadio = document.querySelector('input[name="tipPercentage"]:checked');
   const customTipValue = parseFloat(customTipInput.value);
   let tipPercentage = null;
+
+  console.log(customTipValue)
   // if tip btn selected, return its value
   if (selectedTipRadio) {
+    customTipInput.value = '';
     tipPercentage = parseFloat(selectedTipRadio.value);
     return tipPercentage;
   }
@@ -49,14 +94,14 @@ function renderResults(tipAmount, totalAmount) {
   document.getElementById('totalAmount').textContent = `$${totalAmount.toFixed(2)}`;
 }
 
-// Render error messaging
-function renderError(elementId, message) {
-  document.getElementById(elementId).textContent = message;
-}
-
 // Reset radio input states if custom tip input is focused 
 function resetRadioInputs() {
   tipPercentageBtns.forEach(el => el.checked = false);
+}
+
+// Reset custom tip percentage input
+function resetCustomTipPercentage() {
+  customTipInput.value = '';
 }
 
 function clearErrors() {
@@ -79,26 +124,34 @@ function handleInputChange() {
   const numPeople = parseInt(numPeopleInput.value);
   // get tip percentage
   const tipPercentage = getSelectedTipPercentage();
+
   // Clear any existing error messages
-  clearErrors();
+  // clearErrors();
 
-  // ToDo: further separate out the error handling functions
-  // - A general validation function or object?
   // Validate inputs
-  if (!isValidBillAmount(billAmount)) {
-    renderError('billError', 'Enter a dollar amount')
-    renderResults(0, 0);
-    return;
-  }
+  // if (!isValidBillAmount(billAmount)) {
+  //   renderError('billError', 'Enter a dollar amount')
+  //   renderResults(0, 0);
+  //   return;
+  // }
 
-  if (!isValidNumberOfPeople(numPeople)) {
-    renderError('peopleError', 'Enter at least 1 person');
-    renderResults(0, 0);
-    return;
-  }
+  // if (!isValidNumberOfPeople(numPeople)) {
+  //   renderError('peopleError', 'Enter at least 1 person');
+  //   renderResults(0, 0);
+  //   return;
+  // }
 
-  if (tipPercentage === null) {
-    renderError('tipError', 'Enter a tip percentage')
+  // if (tipPercentage === null) {
+  //   renderError('tipError', 'Enter a tip percentage')
+  //   renderResults(0,0);
+  //   return;
+  // }
+
+  const isBillValid = validateField('billAmount', billAmount);
+  const isPeopleValid = validateField('numPeople', numPeople);
+  const isTipValid = validateField('tipPercentage', tipPercentage);
+
+  if (!isBillValid || !isPeopleValid || !isTipValid) {
     renderResults(0,0);
     return;
   }
