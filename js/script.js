@@ -1,6 +1,6 @@
 const billAmountInput = document.getElementById('billAmount');
 const tipPercentageBtns = document.querySelectorAll('input[name="tipPercentage"]');
-const customPercentageInput = document.getElementById('tipCustom');
+const customTipInput = document.getElementById('customTip');
 const numPeopleInput = document.getElementById('numPeople');
 const resetBtn = document.getElementById('resetBtn');
 
@@ -12,6 +12,25 @@ function isValidBillAmount(billAmount) {
 // Validate number of people input
 function isValidNumberOfPeople(numPeople) {
   return !isNaN(numPeople) && numPeople > 0;
+}
+
+// Validate tip radio btn input selected or custom tip input entered
+function getSelectedTipPercentage() {
+  const selectedTipRadio = document.querySelector('input[name="tipPercentage"]:checked');
+  const customTipValue = parseFloat(customTipInput.value);
+  let tipPercentage = null;
+  // if tip btn selected, return its value
+  if (selectedTipRadio) {
+    tipPercentage = parseFloat(selectedTipRadio.value);
+    return tipPercentage;
+  }
+  // if custom tip is input, validate and return value
+  if (!isNaN(customTipValue) && customTipValue >= 1) {
+    tipPercentage = customTipValue;
+    return tipPercentage;
+  }
+  // if no valid tip selected
+  return tipPercentage;
 }
 
 // Calculate tip amount per person
@@ -55,14 +74,11 @@ function resetCalculator() {
 
 // Handle calculation upon input change events
 function handleInputChange() {
-  // get the selected tip percentage radio btn
-  // ToDo: streamline this code:
-  const selectedTipInput = document.querySelector('input[name="tipPercentage"]:checked')
   // get form input values and assign to variables
   const billAmount = parseFloat(billAmountInput.value);
   const numPeople = parseInt(numPeopleInput.value);
-  // tip percentage is null or a selected tip percentage
-  const tipPercentage = selectedTipInput ? parseFloat(selectedTipInput.value) : null;
+  // get tip percentage
+  const tipPercentage = getSelectedTipPercentage();
   // Clear any existing error messages
   renderError('billError', '');
   renderError('peopleError', '');
@@ -96,5 +112,6 @@ numPeopleInput.addEventListener('input', handleInputChange);
 tipPercentageBtns.forEach(radio => {
   radio.addEventListener('change', handleInputChange);
 });
-customPercentageInput.addEventListener('focus', resetRadioInputs);
+customTipInput.addEventListener('focus', resetRadioInputs);
+customTipInput.addEventListener('input', handleInputChange);
 resetBtn.addEventListener('click', resetCalculator);
