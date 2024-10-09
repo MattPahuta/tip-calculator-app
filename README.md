@@ -6,15 +6,14 @@ This is a solution to the [Tip calculator app challenge on Frontend Mentor](http
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshots](#screenshots)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
+  - [Project workflow](#project-workflow)
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 
 ## Overview
@@ -28,9 +27,10 @@ Users should be able to:
 - Calculate the correct tip and total cost of the bill per person
 - See error states when required data is missing
 
-### Screenshot
+### Screenshots
 
-![](./screenshot.jpg)
+![](./project-ss-01.png)
+![](./project-ss-02.png)
 
 
 ### Links
@@ -50,7 +50,7 @@ Users should be able to:
 - Vanilla JavaScript
 
 
-### What I learned
+### Project workflow
 
 The design calls for the error states to be inline with the input labels (Bill, Number of People), but on smaller screens there just isn't enough space to accomplish this without overlapping the content. There's no design comp for the errors on mobile, but this seemed like the most reasonable approach to me.
 
@@ -58,17 +58,51 @@ In general, I didn't spend a terrible amount of time trying to make a pixel perf
 
 I'm still somewhat baffled by how to achieve a truly accessible form with radio inputs styled in this way. I'm hoping it's not too woefully inadequate in that department but if anyone has any particular skills and experience here I'd welcome the feedback.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+
+I know this is probably a little outdated, but these styles seemed the most straightforward way to elminate the spin buttons (arrows) from the number inputs.
+
 ```css
-.proud-of-this-css {
-  color: papayawhip;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  appearance: textfield;
 }
 ```
+
+I went through several iterations of handling the data validation and eventually landed on using an object to hold the logic. This felt the most scalable and cleanest to me but I'm sure there's a more elegant way to accomplish it as well.
+
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+const validations = {
+  billAmount: {
+    validate: (value) => !isNaN(value) && value > 0,
+    elementId: "billError",
+    errorMessage: "Please enter a valid dollar amount."
+  },
+  numPeople: {
+    validate: (value) => !isNaN(value) && value > 0,
+    elementId: "peopleError",
+    errorMessage: "Please enter at least 1 person."
+  },
+  tipPercentage: {
+    validate: (value) => value !== null,
+    elementId: "tipError",
+    errorMessage: "Please enter a tip percentage."
+  },
+}
+
+function validateField(field, value) {
+  const rule = validations[field];
+  if (!rule.validate(value)) {
+    renderError(rule.elementId, rule.errorMessage);
+    return false;
+  }
+  renderError(rule.elementId, '');
+  return true;
 }
 ```
 
@@ -78,7 +112,8 @@ The error elements (p elements) are currently part of the initial DOM and empty 
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
+- [Remove arrows from number inputs](https://www.geeksforgeeks.org/how-to-disable-arrows-from-number-input/) - Where I found the CSS to remove the spin buttons.
+
 - [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
 
 
@@ -88,8 +123,3 @@ The error elements (p elements) are currently part of the initial DOM and empty 
 - Frontend Mentor - [@mattpahuta](https://www.frontendmentor.io/profile/MattPahuta)
 - Twitter - [@mattpahuta](https://www.twitter.com/MattPahuta)
 - LinkedIn - [Matt Pahuta](www.linkedin.com/in/mattpahuta)
-
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.

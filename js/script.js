@@ -23,12 +23,7 @@ const validations = {
   },
 }
 
-// if (!isValidBillAmount(billAmount)) {
-//   renderError('billError', 'Enter a dollar amount')
-//   renderResults(0, 0);
-//   return;
-// }
-
+// Helper function for validating form fields
 function validateField(field, value) {
   const rule = validations[field];
   if (!rule.validate(value)) {
@@ -41,19 +36,7 @@ function validateField(field, value) {
 
 // Render error messaging
 function renderError(elementId, message) {
-  // console.log('Setting error for elementID: ', elementId);
-  // console.log('Message: ', message)
   document.getElementById(elementId).textContent = message;
-}
-
-// Validate bill amount input
-function isValidBillAmount(billAmount) {
-  return !isNaN(billAmount) && billAmount > 0;
-}
-
-// Validate number of people input
-function isValidNumberOfPeople(numPeople) {
-  return !isNaN(numPeople) && numPeople > 0;
 }
 
 // Validate tip radio btn input selected or custom tip input entered
@@ -62,7 +45,6 @@ function getSelectedTipPercentage() {
   const customTipValue = parseFloat(customTipInput.value);
   let tipPercentage = null;
 
-  console.log(customTipValue)
   // if tip btn selected, return its value
   if (selectedTipRadio) {
     customTipInput.value = '';
@@ -120,33 +102,11 @@ function resetCalculator() {
 // Handle calculation upon input change events
 function handleInputChange() {
   // get form input values and assign to variables
-  const billAmount = parseFloat(billAmountInput.value);
+  const billAmount = parseFloat(billAmountInput.value)
   const numPeople = parseInt(numPeopleInput.value);
   // get tip percentage
   const tipPercentage = getSelectedTipPercentage();
-
-  // Clear any existing error messages
-  // clearErrors();
-
-  // Validate inputs
-  // if (!isValidBillAmount(billAmount)) {
-  //   renderError('billError', 'Enter a dollar amount')
-  //   renderResults(0, 0);
-  //   return;
-  // }
-
-  // if (!isValidNumberOfPeople(numPeople)) {
-  //   renderError('peopleError', 'Enter at least 1 person');
-  //   renderResults(0, 0);
-  //   return;
-  // }
-
-  // if (tipPercentage === null) {
-  //   renderError('tipError', 'Enter a tip percentage')
-  //   renderResults(0,0);
-  //   return;
-  // }
-
+  // variables for validations
   const isBillValid = validateField('billAmount', billAmount);
   const isPeopleValid = validateField('numPeople', numPeople);
   const isTipValid = validateField('tipPercentage', tipPercentage);
