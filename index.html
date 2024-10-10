@@ -29,13 +29,11 @@
     <main class="main">
       <form class="calculator" id="form">
         <section class="data-input-section">
-          <!-- bill amount field -->
           <fieldset class="control">
             <div class="label-container">
               <label class="form-heading__label" for="billAmount">
                 Bill
               </label>
-              <!-- ToDo: create these error elements on-demand? -->
               <p class="error" id="billError"></p>
             </div>
             <input
@@ -48,8 +46,6 @@
               required
               placeholder="0" />
           </fieldset>
-          <!-- Select tip amount -->
-          <!-- Tip input grid -->
           <fieldset class="control">
             <div class="legend-container">
               <legend class="form-heading__legend">
@@ -123,7 +119,6 @@
                   >50%</label
                 >
               </div>
-              <!-- custom tip field -->
               <div class="tip-input">
                 <label
                   for="customTip"
@@ -141,7 +136,6 @@
               </div>
             </div>
           </fieldset>
-          <!-- number of people field -->
           <fieldset class="control">
             <div class="label-container">
               <label class="form-heading__label" for="numPeople"
@@ -159,7 +153,6 @@
               placeholder="0" />
           </fieldset>
         </section>
-        <!-- output section -->
         <section class="data-output-section">
           <div class="result-container">
             <p class="result-description">
@@ -181,7 +174,6 @@
         </section>
       </form>
     </main>
-
     <script src="./js/script.js"></script>
   </body>
 </html>

@@ -36,7 +36,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [live netlify site](https://visionary-maamoul-a920d6.netlify.app/)
 
 ## My process
 
@@ -52,14 +52,11 @@ Users should be able to:
 
 ### Project workflow
 
-The design calls for the error states to be inline with the input labels (Bill, Number of People), but on smaller screens there just isn't enough space to accomplish this without overlapping the content. There's no design comp for the errors on mobile, but this seemed like the most reasonable approach to me.
+In general, I didn't spend a terrible amount of time trying to make a pixel-perfect match with this project. As a non-pro Figma user, I found this design file a little more frustrating than usual. Instead, I eyeballed much of the final design and sought to achieve something that looked decent enough on various screens.
 
-In general, I didn't spend a terrible amount of time trying to make a pixel perfect match with this project. As a non-pro Figma user, this design file felt a little more frustrating than usual. Instead, I eyeballed much of the final design and sought to achieve something that looked decent enough on various screens.
+I'm still somewhat baffled by how to achieve a truly accessible form with radio inputs styled this way. I'm hoping it's not too woefully inadequate in that department but if anyone has any particular skills and experience here I'd welcome the feedback.
 
-I'm still somewhat baffled by how to achieve a truly accessible form with radio inputs styled in this way. I'm hoping it's not too woefully inadequate in that department but if anyone has any particular skills and experience here I'd welcome the feedback.
-
-
-I know this is probably a little outdated, but these styles seemed the most straightforward way to elminate the spin buttons (arrows) from the number inputs.
+I know this is probably a little outdated, but these styles seemed the most straightforward way to eliminate the spin buttons (arrows) from the number inputs:
 
 ```css
 input::-webkit-outer-spin-button,
@@ -74,7 +71,7 @@ input[type=number] {
 }
 ```
 
-I went through several iterations of handling the data validation and eventually landed on using an object to hold the logic. This felt the most scalable and cleanest to me but I'm sure there's a more elegant way to accomplish it as well.
+I went through several iterations of handling the data validation and eventually landed on using an object to hold the logic. This felt the most scalable and cleanest to me but I'm sure there's a more elegant way to accomplish it as well:
 
 ```js
 const validations = {
