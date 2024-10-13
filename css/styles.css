@@ -263,6 +263,10 @@ body {
   background-image: url('../images/icon-person.svg');
 }
 
+.form-heading__legend {
+  margin-bottom: var(--spacing-50);
+}
+
 /* Tip Input Grid */
 .data-input__input-grid {
   display: grid;
@@ -328,16 +332,11 @@ input[type=number] {
   font-size: clamp(2rem, 1.6666rem + 1.48148vw, 3rem);
 }
 
-.label-container,
-.legend-container {
+.label-container {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--spacing-50);
-}
-
-.legend-container {
-  margin-bottom: var(--spacing-100);
 }
 
 .error {

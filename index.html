@@ -29,6 +29,7 @@
     <main class="main">
       <form class="calculator" id="form">
         <section class="data-input-section">
+          <h2 class="visually-hidden">Enter Bill Details</h2>
           <fieldset class="control">
             <div class="label-container">
               <label class="form-heading__label" for="billAmount">
@@ -47,12 +48,10 @@
               placeholder="0" />
           </fieldset>
           <fieldset class="control">
-            <div class="legend-container">
-              <legend class="form-heading__legend">
-                Select Tip %
-              </legend>
-              <p class="error" id="tipError"></p>
-            </div>
+            <legend class="form-heading__legend">
+              Select Tip %
+            </legend>
+            <p class="error" id="tipError"></p>
             <div class="data-input__input-grid">
               <div class="tip-input">
                 <input
@@ -154,6 +153,7 @@
           </fieldset>
         </section>
         <section class="data-output-section">
+          <h2 class="visually-hidden">Tip and Total Results</h2>
           <div class="result-container">
             <p class="result-description">
               <strong>Tip Amount</strong>
