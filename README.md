@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [live netlify site](https://visionary-maamoul-a920d6.netlify.app/)
+- [Frontend Mentor solution page](https://your-solution-url.com)
+- [live site](https://visionary-maamoul-a920d6.netlify.app/)
 
 ## My process
 

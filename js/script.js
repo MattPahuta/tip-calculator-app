@@ -81,11 +81,6 @@ function resetRadioInputs() {
   tipPercentageBtns.forEach(el => el.checked = false);
 }
 
-// Reset custom tip percentage input
-function resetCustomTipPercentage() {
-  customTipInput.value = '';
-}
-
 function clearErrors() {
   const errorEls = document.querySelectorAll('.error');
   errorEls.forEach(el => el.textContent = '');
