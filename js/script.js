@@ -16,11 +16,6 @@ const validations = {
     elementId: "peopleError",
     errorMessage: "Please enter at least 1 person."
   },
-  tipPercentage: {
-    validate: (value) => value !== null,
-    elementId: "tipError",
-    errorMessage: "Please enter a tip percentage."
-  },
 }
 
 // Helper function for validating form fields
@@ -104,9 +99,8 @@ function handleInputChange() {
   // variables for validations
   const isBillValid = validateField('billAmount', billAmount);
   const isPeopleValid = validateField('numPeople', numPeople);
-  const isTipValid = validateField('tipPercentage', tipPercentage);
 
-  if (!isBillValid || !isPeopleValid || !isTipValid) {
+  if (!isBillValid || !isPeopleValid) {
     renderResults(0,0);
     return;
   }

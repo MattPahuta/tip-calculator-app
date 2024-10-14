@@ -28,16 +28,16 @@
     </header>
     <main class="main">
       <form class="calculator" id="form">
-        <section class="data-input-section">
-          <h2 class="visually-hidden">Enter Bill Details</h2>
+        <div class="data-input-section">
           <fieldset class="control">
             <div class="label-container">
               <label class="form-heading__label" for="billAmount">
                 Bill
               </label>
-              <p class="error" id="billError"></p>
+              <p class="error" id="billError" aria-live="polite"></p>
             </div>
             <input
+              aria-describedby="billError"
               type="number"
               min="0.01"
               step="0.01"
@@ -51,7 +51,6 @@
             <legend class="form-heading__legend">
               Select Tip %
             </legend>
-            <p class="error" id="tipError"></p>
             <div class="data-input__input-grid">
               <div class="tip-input">
                 <input
@@ -140,9 +139,10 @@
               <label class="form-heading__label" for="numPeople"
                 >Number of People</label
               >
-              <p class="error" id="peopleError"></p>
+              <p class="error" id="peopleError" aria-live="polite"></p>
             </div>
             <input
+              aria-describedby="peopleError"
               type="number"
               name="numPeople"
               class="data-input people-input"
@@ -151,27 +151,26 @@
               required
               placeholder="0" />
           </fieldset>
-        </section>
-        <section class="data-output-section">
-          <h2 class="visually-hidden">Tip and Total Results</h2>
+        </div>
+        <div class="data-output-section">
           <div class="result-container">
             <p class="result-description">
               <strong>Tip Amount</strong>
               <span>/ person</span>
             </p>
-            <output class="output" id="tipAmount">$0.00</output>
+            <output class="output" id="tipAmount" aria-live="polite">$0.00</output>
           </div>
           <div class="result-container">
             <p class="result-description">
               <strong>Total</strong>
               <span>/ person</span>
             </p>
-            <output class="output" id="totalAmount">$0.00</output>
+            <output class="output" id="totalAmount" aria-live="polite">$0.00</output>
           </div>
           <button type="reset" id="resetBtn" class="btn reset-btn">
             Reset
           </button>
-        </section>
+        </div>
       </form>
     </main>
     <script src="./js/script.js"></script>
