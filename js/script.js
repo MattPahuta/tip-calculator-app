@@ -76,11 +76,6 @@ function resetRadioInputs() {
   tipPercentageBtns.forEach(el => el.checked = false);
 }
 
-function clearErrors() {
-  const errorEls = document.querySelectorAll('.error');
-  errorEls.forEach(el => el.textContent = '');
-}
-
 // Reset form, clear values
 function resetCalculator() {
   document.getElementById('form').reset();
@@ -92,7 +87,7 @@ function resetCalculator() {
 // Handle calculation upon input change events
 function handleInputChange() {
   // get form input values and assign to variables
-  const billAmount = parseFloat(billAmountInput.value)
+  const billAmount = parseFloat(billAmountInput.value);
   const numPeople = parseInt(numPeopleInput.value);
   // get tip percentage
   const tipPercentage = getSelectedTipPercentage();
@@ -104,11 +99,9 @@ function handleInputChange() {
     renderResults(0,0);
     return;
   }
-
   // Calculate tip and total per person
   const tipAmount = calculateTipAmount(billAmount, tipPercentage, numPeople);
   const totalAmount = calculateTotalAmount(billAmount, tipAmount, numPeople);
-
   // Render results to UI
   renderResults(tipAmount, totalAmount)
 }
