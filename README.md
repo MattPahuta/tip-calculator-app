@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Links
 
-- [Frontend Mentor solution page](https://your-solution-url.com)
+- [Frontend Mentor solution page](https://www.frontendmentor.io/solutions/responsive-tip-calculator-app-using-javascript-UbtSuCO0Vv)
 - [live site](https://visionary-maamoul-a920d6.netlify.app/)
 
 ## My process
@@ -84,11 +84,6 @@ const validations = {
     validate: (value) => !isNaN(value) && value > 0,
     elementId: "peopleError",
     errorMessage: "Please enter at least 1 person."
-  },
-  tipPercentage: {
-    validate: (value) => value !== null,
-    elementId: "tipError",
-    errorMessage: "Please enter a tip percentage."
   },
 }
 
